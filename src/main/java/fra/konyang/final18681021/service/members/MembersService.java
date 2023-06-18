@@ -41,4 +41,11 @@ public class MembersService {
         //멤버에 저장된 정보를 모두 불러옴.
         return membersRepository.findAll();
     }
+
+    @Transactional
+    public  void delete(Long id){
+        Members members = membersRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id="+id));
+        membersRepository.delete(members);
+    }
 }
