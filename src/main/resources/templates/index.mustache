@@ -1,10 +1,35 @@
+
+<!--기존에 있던 header와 footer, html태그 삭제-->
 {{>layout/header}}
-<h1>회원가입 페이지</h1> <!--스프링부트로 시작하는 웹 서비스-->
+<h1>회원가입 사이트</h1> <!--스프링부트로 시작하는 웹 서비스-->
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-12">
             <a href="/members/save" role="button" class="btn btn-primary">글 등록</a>
         </div>
     </div>
+    <br>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th> 회원번호 </th>
+            <th> 회원이름 </th>
+            <th> 전화번호 </th>
+            <th>   주소  </th>
+        </tr>
+        </thead>
+
+        <tbody id="tbody">
+        {{#members}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/members/update/{{id}}">{{name}}</a></td>
+                <td>{{tel}}</td>
+                <td>{{addr}}</td>
+            </tr>
+        {{/members}}
+        </tbody>
+
+    </table>
 </div>
 {{>layout/footer}}

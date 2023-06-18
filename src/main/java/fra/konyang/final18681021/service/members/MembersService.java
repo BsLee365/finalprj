@@ -9,6 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class MembersService {
@@ -32,5 +34,11 @@ public class MembersService {
     public MembersResponseDto findById(Long id){
         Members entity = membersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 게시물이 없습니다. id="+id));
         return new MembersResponseDto((entity));
+    }
+
+    @Transactional
+    public List<Members> findAll(){
+        //멤버에 저장된 정보를 모두 불러옴.
+        return membersRepository.findAll();
     }
 }
